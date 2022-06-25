@@ -1,0 +1,7 @@
+===========
+HTTP Server
+===========
+
+This server is exposing file through an HTTP Endpoint
+the common is taking two parameter, the port to expose the server and the filepath
+Usage: server <port> <filepath>
