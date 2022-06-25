@@ -3,26 +3,22 @@ package socket
 import (
 	"bufio"
 	"fmt"
+	"io/ioutil"
 	"net"
-	"strings"
 )
 
 func HandleConnection(c net.Conn) {
 	fmt.Printf("Serving %s\n", c.RemoteAddr().String())
-	for {
-		netData, err := bufio.NewReader(c).ReadString('\n')
-		if err != nil {
-			fmt.Println(err)
-			return
-		}
 
-		temp := strings.TrimSpace(string(netData))
-		if temp == "STOP" {
-			break
-		}
+	bytes, err := ioutil.ReadAll(bufio.NewReader(c))
 
-		result := "5\n"
-		c.Write([]byte(string(result)))
+	if err != nil {
+		fmt.Println(err)
+		c.Close()
+		return
 	}
+
+	fmt.Printf("%s", bytes)
+
 	c.Close()
 }
