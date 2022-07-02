@@ -3,10 +3,8 @@ package main
 import (
 	_ "embed"
 	"fmt"
-	"math/rand"
 	"net"
 	"os"
-	"time"
 
 	"github.com/mallice/http-server/src/socket"
 )
@@ -36,8 +34,7 @@ func main() {
 		fmt.Println(err)
 		return
 	}
-	defer l.Close()
-	rand.Seed(time.Now().Unix())
+	//defer l.Close()
 
 	for {
 		c, err := l.Accept()
