@@ -15,12 +15,6 @@ type Response struct {
 	body          string
 }
 
-func (r *Response) Status(status int, message string) *Response {
-	r.status = status
-	r.statusMessage = message
-	return r
-}
-
 func (r *Response) Header(key string, value string) *Response {
 	if currentValue, ok := r.headers[key]; ok {
 		r.headers[key] = fmt.Sprintf("%s, %s", currentValue, value)
